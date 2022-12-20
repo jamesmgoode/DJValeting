@@ -63,6 +63,7 @@ export class Home extends Component {
         try {
             const response = await fetch("booking/submitbooking", settings);
             // Check 200 response
+            // Display message or progress user to "thankyou for your booking" screen
         } catch (e) {
             // Handle error
         }
