@@ -26,5 +26,11 @@ namespace DJValeting.Controllers
         {
             return await _bookingService.GetBookings();
         }
+
+        [HttpPost]
+        public async Task ApproveBooking(BookingToApprove bookingToApprove)
+        {
+            await _bookingService.ApproveBooking(bookingToApprove?.BookingId);
+        }
     }
 }

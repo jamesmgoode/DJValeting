@@ -7,5 +7,7 @@ namespace DJValeting.Services
         public Task SaveBooking(BookingSubmission bookingSubmission);
 
         Task<IEnumerable<Booking>> GetBookings();
+
+        Task ApproveBooking(int? bookingId);
     }
 }

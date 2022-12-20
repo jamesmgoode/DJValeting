@@ -16,9 +16,11 @@ export class Bookings extends Component {
     renderbookings() {
         return (
             <table>
-                {this.state.bookings.map(booking =>
-                    <Booking booking={booking} />
-                )}
+                <tbody>
+                    {this.state.bookings.map(booking =>
+                        <Booking booking={booking} key={booking.bookingId} />
+                    )}
+                </tbody>
             </table>
         )
     }

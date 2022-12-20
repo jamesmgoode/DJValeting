@@ -34,5 +34,16 @@ namespace DJValeting.Services
         {
             return await _dbContext.Bookings.ToListAsync();
         }
+
+        public async Task ApproveBooking(int? bookingId)
+        {
+            Booking? bookingToApprove = await _dbContext.Bookings.FirstOrDefaultAsync(b => b.BookingId == bookingId);
+
+            if (bookingToApprove != null)
+            {
+                bookingToApprove.Approved = true;
+                await _dbContext.SaveChangesAsync();
+            }
+        }
     }
 }
