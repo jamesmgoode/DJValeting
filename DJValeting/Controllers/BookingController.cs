@@ -17,7 +17,7 @@ namespace DJValeting.Controllers
 
         public async Task SubmitBooking(BookingSubmission bookingSubmission)
         {
-
+            await _bookingService.SaveBooking(bookingSubmission);
         }
     }
 }
