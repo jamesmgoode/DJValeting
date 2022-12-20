@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { Booking } from './Booking';
 
 export class Bookings extends Component {
     static displayName = Bookings.name;
@@ -16,7 +17,7 @@ export class Bookings extends Component {
         return (
             <table>
                 {this.state.bookings.map(booking =>
-                    <tr><td>{booking.name}</td></tr>
+                    <Booking booking={booking} />
                 )}
             </table>
         )
