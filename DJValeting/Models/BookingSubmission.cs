@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public int? Flexibility { get; set; }
 
