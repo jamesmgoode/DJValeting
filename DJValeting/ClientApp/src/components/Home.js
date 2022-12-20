@@ -1,26 +1,134 @@
 import React, { Component } from 'react';
 
 export class Home extends Component {
-  static displayName = Home.name;
+    static displayName = Home.name;
 
-  render() {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = { name: "", date: new Date(), flexibility: "1", vehicleSize: "Small", contactNumber: "", emailAddress: "" };
+
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleFlexibilityChange = this.handleFlexibilityChange.bind(this);
+        this.handleVehicleSizeChange = this.handleVehicleSizeChange.bind(this);
+        this.handleContactNumberChange = this.handleContactNumberChange.bind(this);
+        this.handleEmailAddressChange = this.handleEmailAddressChange.bind(this);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleNameChange(e) {
+        this.setState({ name: e.target.value })
+    }
+
+    handleDateChange(e) {
+        this.setState({ date: e.target.value })
+    }
+
+    handleFlexibilityChange(e) {
+        this.setState({ flexibility: e.target.value })
+    }
+
+    handleVehicleSizeChange(e) {
+        this.setState({ vehicleSize: e.target.value })
+    }
+
+    handleContactNumberChange(e) {
+        this.setState({ contactNumber: e.target.value })
+    }
+
+    handleEmailAddressChange(e) {
+        this.setState({ emailAddress: e.target.value })
+    }
+
+    async handleSubmit() {
+        const bookingSubmission = {
+            name: this.state.name,
+            date: this.state.date,
+            flexibility: this.state.flexibility,
+            vehicleSize: this.state.vehicleSize,
+            contactNumber: this.state.contactNumber,
+            emailAddress: this.state.emailAddress
+        }
+
+        const settings = {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(bookingSubmission)
+        }
+
+        try {
+            const response = await fetch("booking/submitbooking", settings);
+            // Check 200 response
+        } catch (e) {
+            // Handle error
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>Create Booking</h1>
+                <div className="form-group row mt-3">
+                    <label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
+                    <div className="col-sm-3">
+                        <input type="text" className="form-control" id="name" placeholder="Name" value={this.state.name} onChange={this.handleNameChange} />
+                    </div>
+                </div>
+                <div className="form-group row mt-3">
+                    <label htmlFor="date" className="col-sm-2 col-form-label">Booking Date</label>
+                    <div className="col-sm-2">
+                        <input type="date" className="form-control" id="date" value={this.state.date} onChange={this.handleDateChange} />
+                    </div>
+                </div>
+                <div className="form-group row mt-3">
+                    <label htmlFor="flexibility" className="col-sm-2 col-form-label">Flexibility</label>
+                    <div className="col-sm-2">
+                        <select
+                            id="flexibility"
+                            className="form-select"
+                            value={this.state.flexibility}
+                            onChange={this.handleFlexibilityChange}
+                        >
+                            <option value="1">+/- 1 Day</option>
+                            <option value="2">+/- 2 Days</option>
+                            <option value="3">+/- 3 Days</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="form-group row mt-3">
+                    <label htmlFor="vehicle-size" className="col-sm-2 col-form-label">Vehicle Size</label>
+                    <div className="col-sm-2">
+                        <select
+                            id="vehicle-size"
+                            className="form-select"
+                            value={this.state.vehicleSize}
+                            onChange={this.handleVehicleSizeChange}
+                        >
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="Van">Van</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="form-group row mt-3">
+                    <label htmlFor="contact-number" className="col-sm-2 col-form-label">Contact Number</label>
+                    <div className="col-sm-3">
+                        <input type="tel" className="form-control" id="contact-number" placeholder="Contact Number" value={this.state.contactNumber} onChange={this.handleContactNumberChange} />
+                    </div>
+                </div>
+                <div className="form-group row mt-3">
+                    <label htmlFor="email" className="col-sm-2 col-form-label">Email Address</label>
+                    <div className="col-sm-3">
+                        <input type="email" className="form-control" id="email" placeholder="Email address" value={this.state.emailAddress} onChange={this.handleEmailAddressChange} />
+                    </div>
+                </div>
+                <button type="button" className="btn btn-primary mt-3" onClick={this.handleSubmit}>Submit Booking</button>
+            </div>
+        );
+    }
 }
