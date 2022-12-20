@@ -7,19 +7,19 @@ export class Home extends Component {
         return (
             <div>
                 <h1>Create Booking</h1>
-                <div className="form-group row">
+                <div className="form-group row mt-3">
                     <label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
                     <div className="col-sm-3">
                         <input type="text" className="form-control" id="name" placeholder="Name" />
                     </div>
                 </div>
-                <div className="form-group row">
+                <div className="form-group row mt-3">
                     <label htmlFor="date" className="col-sm-2 col-form-label">Booking Date</label>
                     <div className="col-sm-2">
                         <input type="date" className="form-control" id="date" />
                     </div>
                 </div>
-                <div className="form-group row">
+                <div className="form-group row mt-3">
                     <label htmlFor="flexibility" className="col-sm-2 col-form-label">Flexibility</label>
                     <div className="col-sm-2">
                         <select id="flexibility" className="form-select">
@@ -29,7 +29,7 @@ export class Home extends Component {
                         </select>
                     </div>
                 </div>
-                <div className="form-group row">
+                <div className="form-group row mt-3">
                     <label htmlFor="vehicle-size" className="col-sm-2 col-form-label">Vehicle Size</label>
                     <div className="col-sm-2">
                         <select id="vehicle-size" className="form-select">
@@ -40,13 +40,13 @@ export class Home extends Component {
                         </select>
                     </div>
                 </div>
-                <div className="form-group row">
+                <div className="form-group row mt-3">
                     <label htmlFor="contact-number" className="col-sm-2 col-form-label">Contact Number</label>
                     <div className="col-sm-3">
                         <input type="tel" className="form-control" id="contact-number" placeholder="Contact Number" />
                     </div>
                 </div>
-                <div className="form-group row">
+                <div className="form-group row mt-3">
                     <label htmlFor="email" className="col-sm-2 col-form-label">Email Address</label>
                     <div className="col-sm-3">
                         <input type="email" className="form-control" id="email" placeholder="Email address" />
