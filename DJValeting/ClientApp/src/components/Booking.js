@@ -3,6 +3,16 @@
 export class Booking extends Component {
     static displayName = Booking.name;
 
+    static renderApproved(approved) {
+        return approved
+            ? (
+                <td>Approved</td>
+            )
+            : (
+                <td><button type="button" className="btn btn-success btn-sm">Approve</button></td>
+            )
+    }
+
     render() {
         return (
             <div>
@@ -14,7 +24,7 @@ export class Booking extends Component {
                     <td>Vehicle Size: {this.props.booking.vehicleSize}</td>
                     <td>Contact Number: {this.props.booking.contactNumber}</td>
                     <td>Email Address: {this.props.booking.emailAddress}</td>
-                    <td>Approved: {this.props.booking.approved ? "Yes" : "No" }</td>
+                    {Booking.renderApproved(this.props.booking.approved)}
                 </tr>
             </div>
         )
