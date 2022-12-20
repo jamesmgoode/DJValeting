@@ -1,5 +1,6 @@
 ﻿using DJValeting.Data;
 using DJValeting.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DJValeting.Services
 {
@@ -25,9 +26,13 @@ namespace DJValeting.Services
                 Approved = false
             };
 
-            //using var dbContext = new ApplicationDbContext();
             await _dbContext.Bookings.AddAsync(booking);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Booking>> GetBookings()
+        {
+            return await _dbContext.Bookings.ToListAsync();
         }
     }
 }

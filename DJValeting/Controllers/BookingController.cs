@@ -20,5 +20,11 @@ namespace DJValeting.Controllers
         {
             await _bookingService.SaveBooking(bookingSubmission);
         }
+
+        [HttpGet]
+        public async Task<IEnumerable<Booking>> GetBookings()
+        {
+            return await _bookingService.GetBookings();
+        }
     }
 }
